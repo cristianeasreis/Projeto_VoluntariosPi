@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-evenly align-items-center h-75">
+  <img class="img-fluid d-none d-lg-block" src="assets/img/login.svg" alt="imagem-login" width="50%" height="20px">
+  <div>
+    <h1 class="text-dark">Login</h1>
+
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" 
+        [ngClass]="{'is-invalid': lf.email.errors && lf.email.touched}" 
+        formControlName="email" 
+        id="email" type="email"
+        />
+
+        <div *ngIf="lf.email.errors?.required" class="invalid-feedback">Email é obrigatória.</div>
+        <div *ngIf="lf.email.errors?.maxlength" class="invalid-feedback">Email deve ter no máximo 40 caracteres.</div>
+        <div *ngIf="lf.email.errors?.email" class="invalid-feedback">Formato incorreto para um email.</div>
+      </div>
+      
+      <div class="form-group mt-2">
+        <label for="senha">Senha</label>
+        <input class="form-control"
+        [ngClass]="{'is-invalid': lf.senhaV.errors && lf.senhaV.touched}" 
+        formControlName="senhaV" 
+        id="senha" type="password"
+        />
+
+        <div *ngIf="lf.senhaV.errors?.required" class="invalid-feedback">Senha é obrigatória.</div>
+        <div *ngIf="lf.senhaV.errors?.maxlength" class="invalid-feedback">Senha deve ter no máximo 60 caracteres.</div>
+      </div>
+
+      <div class="form-row mt-3">
+        <button (click)="logar()" class="btn text-light bg-dark" [disabled]="loginForm.invalid">Entrar</button>
+        <button routerLink="/home" class="btn btn-secondary ms-5">Voltar para a página inicial</button>
+      </div>
+    </form>
+
+  </div>
+</div>
